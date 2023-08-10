@@ -1,5 +1,8 @@
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+
 plugins {
-    kotlin("jvm") version "1.9.0"
+
+    kotlin("jvm") version "1.9.0";
     application
 }
 
@@ -11,6 +14,9 @@ repositories {
 }
 
 dependencies {
+
+    implementation("org.jetbrains.kotlinx", "kotlinx-coroutines-core", "1.5.2")
+
     testImplementation(kotlin("test"))
 }
 
@@ -18,8 +24,8 @@ tasks.test {
     useJUnitPlatform()
 }
 
-kotlin {
-    jvmToolchain(8)
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
 }
 
 application {
